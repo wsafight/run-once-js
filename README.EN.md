@@ -1,23 +1,18 @@
-# tool-library-template
+# run-once-js
 
-<!-- [![NPM Version](https://badgen.net/npm/v/tool-library-template)](https://www.npmjs.com/package/tool-library-template) -->
+Wraps a function that runs once. The call can continue after a delay of several milliseconds.
 
-Tool library template
-
-## Features
-
-- [x] Based on modern.js
 
 ## Install
 
 ```bash
-npm install tool-library-template
+npm install run-once-js
 ```
 
 Or
 
 ```bash
-yarn add tool-library-template
+yarn add run-once-js
 ```
 
 ## Usage
@@ -26,17 +21,42 @@ yarn add tool-library-template
 
 | parameter | desc | type | default |
 | :-- | :--| :-- | :-- |
-|  | |  |  |
+|     func     |   execute function       |                Function             |     () => void 0   |
+|      options.delay       |        How many milliseconds to delay before continuing execution           |                number             |      333   |
+|      options.waitFunDone       |     Wait for function execution to complete (asynchronous function)      |                boolean             |      false   |
+
 
 
 ### example
 
 ```ts
+import { runOnce } from 'run-once-js';
 
+let i = 0;
+const exec = (param1: any, param2: any) => {
+  i++;
+  window.console.log(param1, params2);
+};
+
+const run = runOnce({
+  // The execution function must be passed
+  func: exec,
+  options: {
+    // Execution can continue after 333 ms
+    delay: 333,
+    // Whether to wait for the async function
+    waitFunDone: false
+  }
+});
+
+// execute
+run(2233, 3343);
+// will not execute
+run(2233);
+// will not execute
+run(2233);
 ```
 
 ## Changelog
-
-- 0.0.2 switch framework to modern.js
 
 - 0.0.1 basically available
