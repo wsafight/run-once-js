@@ -22,6 +22,10 @@
     "upgrade": "modern upgrade",
     "test": "modern test"
   },
+  "keywords": [
+    "utils",
+    "run-once"
+  ],
   "lint-staged": {
     "*.{ts,tsx}": [
       "node --max_old_space_size=8192 ./node_modules/eslint/bin/eslint.js --fix --color --cache --quiet"
