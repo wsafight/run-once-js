@@ -29,9 +29,14 @@ const runOnce = (
     },
   },
 ) => {
-  const { delay, waitFunDone } = { ...DEFAULT_OPTIONS, ...options };
+  const { delay = DEFAULT_DELAY, waitFunDone } = {
+    ...DEFAULT_OPTIONS,
+    ...options,
+  };
 
   let isLocked = false;
+
+  const fixedDelay = typeof delay === 'number' ? delay : DEFAULT_DELAY;
 
   // 返回一个新的函数，该函数将作为包装后的Func
   return async (...params: any) => {
@@ -58,7 +63,7 @@ const runOnce = (
 
     setTimeout(() => {
       isLocked = false;
-    }, delay);
+    }, fixedDelay);
   };
 };
 
